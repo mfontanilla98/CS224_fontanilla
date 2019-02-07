@@ -31,5 +31,5 @@ public class hangman
 
 	}
 	//test HAys addition
-	//test Change
+	/*Here's a test*/
 }
