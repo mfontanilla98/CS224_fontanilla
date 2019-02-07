@@ -31,10 +31,7 @@ public class hangman
 
 	}
 	//test HAys addition
-<<<<<<< HEAD
 	/*Here's a test*/
-=======
-	//test Change
-	//try without add
->>>>>>> 654a0da1ab1cd29106ca327795f292d34632e216
+	//hays passback
+
 }
