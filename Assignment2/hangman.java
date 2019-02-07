@@ -13,7 +13,11 @@ public class hangman
 	public static void menu()
 	{
 		int userDecision;
+		outputMenu();
+	}
 
+	public static void outputMenu()
+	{
 		System.out.println("*****MENU*****");
 		System.out.println("1. Vs. Computer");
 		System.out.println("2. Vs. Player");
