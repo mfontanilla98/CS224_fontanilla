@@ -2,14 +2,19 @@ import java.util.Scanner;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import java.lang.String;
+import java.util.List;	
+import java.io.IOException;
 
 public class hangman
 {
-	Scanner scan = new Scanner(System.in);
+	
 
 	public static void main(String args[])
 	{
 		menu();
+		Scanner scan = new Scanner(System.in);
+		Scanner CPU_input = new Scanner("dictionary.txt");
+
 	}
 
 	public static void menu()
@@ -62,12 +67,11 @@ public class hangman
 
 	public static void vsComputer()
 	{
-
+		
 	}
 
 	public static void vsPlayer()
 	{
-
+		String playerWord = JOptionPane.showInputDialog("Player 1 Enter a word: ");
 	}
-
 }
