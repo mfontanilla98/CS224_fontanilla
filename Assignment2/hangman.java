@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.Random;
+import javax.swing.JOptionPane;
+import java.lang.String;
 
 public class hangman
 {
@@ -7,16 +9,23 @@ public class hangman
 
 	public static void main(String args[])
 	{
-
+		menu();
 	}
 
 	public static void menu()
 	{
-		int userDecision;
+		String userDecision;
+		int intUserDecision;
 
 		outputMenu();
-		userDecision = scan.nextInt();
-		gameSelect(userDecision);
+
+
+
+		
+		intUserDecision = Integer.parseInt(JOptionPane.showInputDialog("What game mode would you like to play?: "));
+
+		System.out.println(intUserDecision + " nice");
+		//gameSelect(userDecision);
 	}
 
 	public static void outputMenu()
@@ -26,7 +35,6 @@ public class hangman
 		System.out.println("2. Vs. Player");
 		System.out.println("3. Exit Game");
 		System.out.print("\n");
-		System.out.print("What game mode would you like to play?: ");
 	}
 
 	public static void gameSelect(int userDecision)
@@ -54,12 +62,12 @@ public class hangman
 
 	public static void vsComputer()
 	{
-	
+
 	}
-	
+
 	public static void vsPlayer()
 	{
-	
+
 	}
 
 }
