@@ -79,16 +79,35 @@ public class hangman
 	}
 	public static void guessingStart(String word)
 	{
-		System.println(" ___________");
-		System.println(" |         |");
-		System.println(" |");
-		System.println(" |");
-		System.println(" |");
-		System.println(" |");
-		System.println("___");
-		for (int i = 0; i < len(word); i ++)
+		boolean finished = false;
+		size = len(word);
+		int numErrors = 0;
+		boolean[] correctWord = new boolean[size];
+		while(!finished)
 		{
-			println(" _ ");
+			for (int i = 0; i < size; i++)
+			{
+				if (correctWord[i] = true)
+					numErrors++;
+			}
+			if (numErrors > 6)
+			{
+				System.out.println("Sorry. You lost.");
+				break;
+			}
+			System.println(" ___________");
+			System.println(" |         |");
+			System.println(" |");
+			System.println(" |");
+			System.println(" |");
+			System.println(" |");
+			System.println("___");
+
+			for (int i = 0; i < len(word); i ++)
+			{
+				println(" _ ");
+			}
+			
 		}
 	}
 }
