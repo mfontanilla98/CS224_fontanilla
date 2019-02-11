@@ -7,13 +7,13 @@ import java.io.IOException;
 
 public class hangman
 {
-	
+	Scanner scan;
+	Scanner CPU_input = new Scanner("dictionary.txt");
 
 	public static void main(String args[])
 	{
 		menu();
-		Scanner scan = new Scanner(System.in);
-		Scanner CPU_input = new Scanner("dictionary.txt");
+		scan = new Scanner(System.in);
 
 	}
 
@@ -73,5 +73,22 @@ public class hangman
 	public static void vsPlayer()
 	{
 		String playerWord = JOptionPane.showInputDialog("Player 1 Enter a word: ");
+		String word = scan.nextLine();
+		scan.nextLine();	//might need to remove. will allegedly catch the endline character
+		guessingStart(word);
+	}
+	public static void guessingStart(String word)
+	{
+		System.println(" ___________");
+		System.println(" |         |");
+		System.println(" |");
+		System.println(" |");
+		System.println(" |");
+		System.println(" |");
+		System.println("___");
+		for (int i = 0; i < len(word); i ++)
+		{
+			println(" _ ");
+		}
 	}
 }
