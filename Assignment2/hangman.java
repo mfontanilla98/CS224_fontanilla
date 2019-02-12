@@ -18,15 +18,32 @@ public class hangman
 
 	public static void menu(Scanner scnr)
 	{
-		String userDecision;
-		int intUserDecision;
-
 		outputMenu(scnr);
+		String userDecision = JOptionPane.showInputDialog("Enter a number: ");
 
-		intUserDecision = Integer.parseInt(JOptionPane.showInputDialog("What game mode would you like to play?: "));
+		//convert string to char and check if digit
+		char charDecision = userDecision.charAt(0);
+		boolean aNumber = isNumber(charDecision);
 
-		//System.out.println(intUserDecision + " nice");
-		gameSelect(intUserDecision, scnr);
+		//convert char to integer
+		int intUserDecision = Character.getNumericValue(charDecision);
+		if (aNumber == true)
+		{
+			gameSelect(intUserDecision, scnr);
+		}
+		else
+		{
+			System.out.println("Please enter a valid digit.");
+			menu(scnr);
+		}
+	}
+
+	public static boolean isNumber(char number)
+	{
+		char charNum = (char) number;
+		if(!Character.isDigit(charNum))
+			return false;
+		return true;
 	}
 
 	public static void outputMenu(Scanner scnr)
@@ -67,9 +84,31 @@ public class hangman
 	public static void vsPlayer(Scanner scnr)
 	{
 		String word = JOptionPane.showInputDialog("Player 1 Enter a word: ");
-		word = word.toUpperCase();
-		guessingStart(word, scnr);
+		boolean aWord = isAlpha(word);
+		if (aWord == true)
+		{
+			word = word.toUpperCase();
+			guessingStart(word, scnr);
+		}
+		else
+				System.out.println("Please enter a valid word.");
+				vsPlayer(scnr);
 	}
+
+	public static boolean isAlpha(String name)
+	{
+    char[] chars = name.toCharArray();
+
+    for (char c : chars)
+		{
+      if(!Character.isLetter(c))
+			{
+        return false;
+      }
+    }
+    return true;
+	}
+
 	public static void guessingStart(String word, Scanner scnr)
 	{
 		boolean finished = false;
@@ -109,6 +148,7 @@ public class hangman
 				checkWordArray(correctWord, size, word);
 				System.out.println("Congratulations! You won!");
 				finished = true;
+				System.exit(0);
 			}
 		}
 	}
@@ -130,8 +170,8 @@ public class hangman
 	{
 		for (boolean value : correctWord)
 		{
-        if (!value)
-            return false;
+      if (!value)
+      return false;
     }
     return true;
 	}
