@@ -4,19 +4,20 @@ import javax.swing.JOptionPane;
 import java.lang.String;
 import java.util.List;
 import java.io.IOException;
+import java.io.File;
 
 public class hangman
 {
-	//Scanner scan = new Scanner(System.in);
-	Scanner CPU_input = new Scanner("dictionary.txt");
 
-	public static void main(String args[])
+	public static void main(String args[]) throws Exception
 	{
 		Scanner scan = new Scanner(System.in);
-		menu(scan);
+		File inputFile = new File("dictionary.txt");
+		Scanner fileScanner = new Scanner(inputFile);
+		menu(scan, fileScanner);
 	}
 
-	public static void menu(Scanner scnr)
+	public static void menu(Scanner scnr, Scanner fileScanner)
 	{
 		outputMenu(scnr);
 		String userDecision = JOptionPane.showInputDialog("Enter a number: ");
@@ -29,12 +30,12 @@ public class hangman
 		int intUserDecision = Character.getNumericValue(charDecision);
 		if (aNumber == true)
 		{
-			gameSelect(intUserDecision, scnr);
+			gameSelect(intUserDecision, scnr, fileScanner);
 		}
 		else
 		{
 			System.out.println("Please enter a valid digit.");
-			menu(scnr);
+			menu(scnr, fileScanner);
 		}
 	}
 
@@ -55,11 +56,11 @@ public class hangman
 		System.out.print("\n");
 	}
 
-	public static void gameSelect(int userDecision, Scanner scnr)
+	public static void gameSelect(int userDecision, Scanner scnr, Scanner fileScanner)
 	{
 			if (userDecision == 1)
 			{
-				vsComputer(scnr);
+				vsComputer(fileScanner);
 			}
 			else if (userDecision == 2)
 			{
@@ -72,13 +73,27 @@ public class hangman
 			else
 			{
 				System.out.println("Invalid input: Please select a game mode");
-				menu(scnr);
+				menu(scnr, fileScanner);
 			}
 	}
 
-	public static void vsComputer(Scanner scnr)
+	public static void vsComputer(Scanner fileScanner)
 	{
+		String[] randomWords = new String[100];
+		Random rand = new Random();
+		int i = 0;
+		while(fileScanner.hasNextLine())
+		{
+			//System.out.println(fileScanner.nextLine());
+			randomWords[i] = fileScanner.nextLine();
+			i++;
+		}
+		int randNum = (rand.nextInt(70) + 1);
 
+		//Generate a random word
+		String word = randomWords[randNum];
+		word = word.toUpperCase();
+		guessingStart(word);
 	}
 
 	public static void vsPlayer(Scanner scnr)
@@ -88,7 +103,7 @@ public class hangman
 		if (aWord == true)
 		{
 			word = word.toUpperCase();
-			guessingStart(word, scnr);
+			guessingStart(word);
 		}
 		else
 				System.out.println("Please enter a valid word.");
@@ -109,7 +124,7 @@ public class hangman
     return true;
 	}
 
-	public static void guessingStart(String word, Scanner scnr)
+	public static void guessingStart(String word)
 	{
 		boolean finished = false;
 		int size = word.length();
