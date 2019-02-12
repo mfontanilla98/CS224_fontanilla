@@ -1,8 +1,13 @@
+/***************
+Homework #2
+Due Date: 2/11/19
+Names: Ryan Hays, Michael Fontanilla
+********************/
+
 import java.util.Scanner;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import java.lang.String;
-import java.util.List;
 import java.io.IOException;
 import java.io.File;
 
@@ -37,14 +42,6 @@ public class hangman
 			System.out.println("Please enter a valid digit.");
 			menu(scnr, fileScanner);
 		}
-	}
-
-	public static boolean isNumber(char number)
-	{
-		char charNum = (char) number;
-		if(!Character.isDigit(charNum))
-			return false;
-		return true;
 	}
 
 	public static void outputMenu(Scanner scnr)
@@ -88,7 +85,7 @@ public class hangman
 			randomWords[i] = fileScanner.nextLine();
 			i++;
 		}
-		int randNum = (rand.nextInt(70) + 1);
+		int randNum = (rand.nextInt(70));
 
 		//Generate a random word
 		String word = randomWords[randNum];
@@ -108,20 +105,6 @@ public class hangman
 		else
 				System.out.println("Please enter a valid word.");
 				vsPlayer(scnr);
-	}
-
-	public static boolean isAlpha(String name)
-	{
-    char[] chars = name.toCharArray();
-
-    for (char c : chars)
-		{
-      if(!Character.isLetter(c))
-			{
-        return false;
-      }
-    }
-    return true;
 	}
 
 	public static void guessingStart(String word)
@@ -166,6 +149,30 @@ public class hangman
 				System.exit(0);
 			}
 		}
+	}
+
+	//check to see if passes string is an alpha
+	public static boolean isAlpha(String name)
+	{
+		char[] chars = name.toCharArray();
+
+		for (char c : chars)
+		{
+			if(!Character.isLetter(c))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	//check to see if passes char is a number
+	public static boolean isNumber(char number)
+	{
+		char charNum = (char) number;
+		if(!Character.isDigit(charNum))
+			return false;
+		return true;
 	}
 
 	public static void checkWordArray(boolean[] correctWord, int size, String word)
