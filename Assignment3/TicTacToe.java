@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
 
@@ -30,7 +31,7 @@ public class TicTacToe extends JFrame
 	private JTextField player1TextField;
 	private JTextField player2TextField;
 	private final int WINDOW_WIDTH = 500;
-	private final int WINDOW_HEIGHT = 300;
+	private final int WINDOW_HEIGHT = 500;
 
 	public TicTacToe()
 	{
@@ -64,13 +65,13 @@ public class TicTacToe extends JFrame
 	{
 		p1Header = new JLabel ("Player 1 (X):");
 		p1Name = new JLabel("Name: ");
-		player1TextField = new JTextField(10);
+		player1TextField = new JTextField(8);
 		p1Wins = new JLabel ("Wins: " + numWins);
 		p1Losses = new JLabel("Losses: " + numLosses);
 
 		p2Header = new JLabel ("Player 2 (O):");
 		p2Name = new JLabel("Name: ");
-		player2TextField = new JTextField(10);
+		player2TextField = new JTextField(8);
 		p2Wins = new JLabel ("Wins: " + numWins);
 		p2Losses = new JLabel("Losses: " + numLosses);
 
@@ -98,13 +99,14 @@ public class TicTacToe extends JFrame
 		player2Panel.add(p2Wins);
 		player2Panel.add(p2Losses);
 
+		//Action Listeners
+		player1TextField.addActionListener(new GameListener());
+		player2TextField.addActionListener(new GameListener());
+
 		//Final Panel
 		playerPanel = new JPanel(new BorderLayout());
 		playerPanel.add(player1Panel, BorderLayout.WEST);
 		playerPanel.add(player2Panel, BorderLayout.EAST);
-		
-
-
 	}
 
 	private void buildBoardPanel()
@@ -134,10 +136,10 @@ public class TicTacToe extends JFrame
 		optionsGroup.add(reset);
 		optionsGroup.add(exit);
 
-		/*Option Listeners
-		newGame.addActionListener(new OptionsListener());
-		reset.addActionListener(new OptionsListener());
-		exit.addActionListener(new OptionsListener());*/
+		//Listeners
+		newGame.addActionListener(new GameListener());
+		reset.addActionListener(new GameListener());
+		exit.addActionListener(new GameListener());
 
 		optionsPanel = new JPanel();
 		optionsPanel.add(newGame);
@@ -145,25 +147,26 @@ public class TicTacToe extends JFrame
 		optionsPanel.add(exit);
 	}
 
-	/*Option Button Listner Class
-	private class OptionsListener implements ActionListener
+	private class GameListener implements ActionListener
 	{
-		public void optionPerformed(ActionEvent option)
+		public void actionPerformed(ActionEvent player)
 		{
-			if(options.getSource() == newGame)
+			String X_Name;
+			String O_Name;
+
+			while(player1TextField.getText().isEmpty() && player2TextField.getText().isEmpty())
 			{
-				//Reset whole game
+				newGame.setEnabled(false);
+				reset.setEnabled(false);
 			}
-			else if(options.getSource() == reset)
-			{
-				//Reset Game
-			}
-			else if(options.getSource() == exit)
-			{
-				/Exit Game
-			}
+
+			X_Name = player1TextField.getText();
+			O_Name = player2TextField.getText();
+
 		}
-	}*/
+	}
+
+
 
 
 	public static void main(String[] args)
