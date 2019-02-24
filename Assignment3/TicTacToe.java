@@ -119,6 +119,7 @@ public class TicTacToe extends JFrame
 			{
 				boardButtons[rows][columns] = new JButton();
 				boardPanel.add(boardButtons[rows][columns]);
+				boardButtons[rows][columns].setEnabled(false); //Disables board buttons
 			}
 		}
 	}
@@ -147,22 +148,47 @@ public class TicTacToe extends JFrame
 		optionsPanel.add(exit);
 	}
 
+
+
 	private class GameListener implements ActionListener
 	{
-		public void actionPerformed(ActionEvent player)
+		public void actionPerformed(ActionEvent e)
 		{
-			String X_Name;
-			String O_Name;
+			String x_name;
+			String o_name;
 
-			while(player1TextField.getText().isEmpty() && player2TextField.getText().isEmpty())
+			x_name = player1TextField.getText();
+			o_name = player2TextField.getText();
+
+			while(e.getSource() != exit)
 			{
-				newGame.setEnabled(false);
-				reset.setEnabled(false);
+				if (e.getSource() == newGame)
+				{
+					for(int rows = 0; rows < 3; rows++)
+					{
+						for(int columns = 0; columns < 3; columns++)
+						{
+							boardButtons[rows][columns].setEnabled(true); 
+						}
+					}
+					//Actual TicTacToe Functions
+				}
+				else if(e.getSource() == reset)
+				{
+					int resetOption = JOptionPane.showConfirmDialog(null, "This will end the game and set the win/loss stats to 0. Are you sure?", "Are you sure?", JOptionPane.YES_NO_OPTION);
+					if(resetOption == JOptionPane.YES_OPTION)
+					{
+						player1TextField.setText("");
+						player2TextField.setText("");
+						numWins = 0;
+						numLosses = 0;
+					}
+				}
+				else
+				{
+					System.exit(0);
+				}
 			}
-
-			X_Name = player1TextField.getText();
-			O_Name = player2TextField.getText();
-
 		}
 	}
 
