@@ -132,7 +132,6 @@ public class TicTacToe extends JFrame {
 
 	private void buildButtonsPanel()
 	{
-<<<<<<< HEAD
 		buildButtons();
 
 		boardPanel = new JPanel();
@@ -169,19 +168,6 @@ public class TicTacToe extends JFrame {
 		buttonBL.addActionListener(new ButtonListener());
 		buttonBM.addActionListener(new ButtonListener());
 		buttonBR.addActionListener(new ButtonListener());
-=======
-		//Add buttons to boardPanel
-		boardPanel = new JPanel(new GridLayout(3,3));
-		for(int rows = 0; rows < 3; rows++)
-		{
-			for(int columns = 0; columns < 3; columns++)
-			{
-				boardButtons[rows][columns] = new JButton();
-				boardPanel.add(boardButtons[rows][columns]);
-				boardButtons[rows][columns].setEnabled(false); //Disables board buttons
-			}
-		}
->>>>>>> b587429b79ee7ec6234ef6c4d09ac5337868f602
 	}
 
 	private void buildOptionsPanel()
@@ -210,7 +196,6 @@ public class TicTacToe extends JFrame {
 		buttonPanel.add(exitButton);
 	}
 
-<<<<<<< HEAD
 	private void resetGame()
 	{
 		clearBoard();
@@ -417,49 +402,6 @@ public class TicTacToe extends JFrame {
 		if(checkTL && checkTM && checkTR && checkML && checkMM && checkMR && checkBL && checkBM && checkBR){ //else if all 9 buttons are presses and no one got 3 in a row
 			JOptionPane.showMessageDialog(null, "Cat's Game!");
 			clearBoard();
-=======
-
-
-	private class GameListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{
-			String x_name;
-			String o_name;
-
-			x_name = player1TextField.getText();
-			o_name = player2TextField.getText();
-
-			while(e.getSource() != exit)
-			{
-				if (e.getSource() == newGame)
-				{
-					for(int rows = 0; rows < 3; rows++)
-					{
-						for(int columns = 0; columns < 3; columns++)
-						{
-							boardButtons[rows][columns].setEnabled(true); 
-						}
-					}
-					//Actual TicTacToe Functions
-				}
-				else if(e.getSource() == reset)
-				{
-					int resetOption = JOptionPane.showConfirmDialog(null, "This will end the game and set the win/loss stats to 0. Are you sure?", "Are you sure?", JOptionPane.YES_NO_OPTION);
-					if(resetOption == JOptionPane.YES_OPTION)
-					{
-						player1TextField.setText("");
-						player2TextField.setText("");
-						numWins = 0;
-						numLosses = 0;
-					}
-				}
-				else
-				{
-					System.exit(0);
-				}
-			}
->>>>>>> b587429b79ee7ec6234ef6c4d09ac5337868f602
 		}
 	}
 
