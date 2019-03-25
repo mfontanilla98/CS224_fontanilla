@@ -141,22 +141,28 @@ public class MotionParallax extends JFrame
    {
       public void mousePressed(MouseEvent e)
       {
+		System.out.println("Mouse pressed");
+		System.out.println("Holding...");
       }
 
       public void mouseClicked(MouseEvent e)
       {
+		System.out.println("Mouse Clicked");
       }
 
       public void mouseReleased(MouseEvent e)
       {
+		System.out.println("Mouse Released");
       }
 
       public void mouseEntered(MouseEvent e)
       {
+		System.out.println("Mouse has entered");
       }
 
       public void mouseExited(MouseEvent e)
       {
+		System.out.println("Mouse has exited");
       }
    }
 
@@ -168,10 +174,14 @@ public class MotionParallax extends JFrame
    {
       public void mouseDragged(MouseEvent e)
       {
+		currentX = e.getX();
+		currentY = e.getY();
       }
 
       public void mouseMoved(MouseEvent e)
       {
+		currentX = e.getX();
+		currentY = e.getY();
       }
    }
 
