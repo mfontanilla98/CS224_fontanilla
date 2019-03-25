@@ -1,12 +1,10 @@
 import javax.swing.*;
-import java.awt.event.*;
 import java.awt.*;
-
-/**
-   This applet demonstrates how mouse events and mouse
-   motion events can be handled. It lets the user draw
-   boxes by dragging the mouse.
-*/
+import java.awt.event.*;
+import java.awt.Graphics;
+import java.awt.Color;
+import javax.swing.JPanel;
+import javax.swing.JFrame;
 
 public class MotionParallax extends JFrame
 {
@@ -17,18 +15,25 @@ public class MotionParallax extends JFrame
    private JPanel panel;
    private final int WINDOW_WIDTH = 500;
    private final int WINDOW_HEIGHT = 500;
-
+   Color desertSky = new Color(255,212,128);
+   Color desertDunes = new Color(128,170,255);
+   Color ground = new Color(191,128,64);
+   Color sky = new Color(102,153,255);
    public MotionParallax()
    {
-     setTitle("Boxes");
-     setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
-     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+     InitialElements();
 
      addMouseListener(new MyMouseListener());
      addMouseMotionListener(new MyMouseMotionListener());
 
-     panel = new JPanel();
-     add(panel);
+     //panel = new JPanel();
+     //add(panel);
+   }
+   private void InitialElements()
+   {
+     setTitle("Motion Parallax");
+     setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
+     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
      setVisible(true);
    }
 
@@ -39,6 +44,30 @@ public class MotionParallax extends JFrame
 
    public void paint(Graphics g)
    {
+     g.drawRect(0,0,500,500);
+     g.setColor(desertSky);
+     g.fillRect(0,0,500,500);
+
+
+
+     g.drawOval(-1000,375, 2000, 400);
+     g.setColor(ground);
+     g.fillOval(-1000, 375, 2000, 400);
+
+     g.drawOval(-1000,400,2000,400);
+     g.setColor(desertDunes);
+     g.fillOval(-1000, 400, 2000, 400);
+
+     //g.drawRect(0,0,250,500);
+     //g.setColor(sky);
+     //g.fillRect(0,0,250,500);
+
+     int xValues[] = {25, 145, 25, 145, 25};
+     int yValues[] = {25, 25, 145, 145, 25};
+     int points = 5;
+     g.setColor(Color.blue);
+     g.fillPolygon(xValues, yValues, points);
+     //getContentPane().setBackground(desertSky);
    }
 
    /**
@@ -59,7 +88,6 @@ public class MotionParallax extends JFrame
 
       public void mouseClicked(MouseEvent e)
       {
-        repaint();
       }
 
       public void mouseReleased(MouseEvent e)
@@ -84,12 +112,6 @@ public class MotionParallax extends JFrame
    {
       public void mouseDragged(MouseEvent e)
       {
-         // Calculate the size of the rectangle.
-         width = e.getX() - currentX;
-         height = e.getY() - currentY;
-
-         // Repaint the window.
-         repaint();
       }
 
       /**
