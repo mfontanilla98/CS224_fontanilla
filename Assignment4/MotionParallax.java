@@ -21,6 +21,7 @@ public class MotionParallax extends JFrame
    Color sky = new Color(102,153,255);
    Color foregroundMountain = new Color(191, 128, 64);
    Color backgroundMountain = new Color(204, 153, 102);
+   private int sunDivider = 100;
 
    public MotionParallax()
    {
@@ -70,7 +71,7 @@ public class MotionParallax extends JFrame
 
      //sun
      g.setColor(Color.YELLOW);
-     g.fillOval(125,50,50,50);
+     g.fillOval((125 + currentX/sunDivider),(50 + currentY/sunDivider),50,50);
 
      //right background mountain
      int xValuesRBM[] = {345, 450, 250};
@@ -176,12 +177,15 @@ public class MotionParallax extends JFrame
       {
 		currentX = e.getX();
 		currentY = e.getY();
+		repaint();
       }
 
       public void mouseMoved(MouseEvent e)
       {
 		currentX = e.getX();
 		currentY = e.getY();
+		System.out.println(currentX);
+		repaint();
       }
    }
 
