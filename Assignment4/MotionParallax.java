@@ -16,9 +16,12 @@ public class MotionParallax extends JFrame
    private final int WINDOW_WIDTH = 500;
    private final int WINDOW_HEIGHT = 500;
    Color sand = new Color(255,212,128);
-   Color water = new Color(128,170,255);
+   Color water = new Color(102,0,255);
    Color ground = new Color(191,128,64);
    Color sky = new Color(102,153,255);
+   Color foregroundMountain = new Color(191, 128, 64);
+   Color backgroundMountain = new Color(204, 153, 102);
+
    public MotionParallax()
    {
      InitialElements();
@@ -65,40 +68,65 @@ public class MotionParallax extends JFrame
      g.setColor(sky);
      g.fillRect(0,0,500,200);
 
+     g.drawOval(125,50,50,50);
+     g.setColor(Color.YELLOW);
+     g.fillOval(125,50,50,50);
+
      //right single tipped mountain
      int xValues4[] = {345, 450, 250};
      int yValues4[] = {100, 325, 325};
      int points4 = 3;
-     g.setColor(Color.blue);
+     g.setColor(backgroundMountain);
      g.fillPolygon(xValues4, yValues4, points4);
 
      //left single tipped mountain
      int xValues5[] = {165, 270, 70};
      int yValues5[] = {100, 325, 325};
      int points5 = 3;
-     g.setColor(Color.green);
+     g.setColor(backgroundMountain);
      g.fillPolygon(xValues5, yValues5, points5);
 
      //middle double tipped mountain
      int xValues2[] = {265, 275, 285, 375, 150};
      int yValues2[] = {50, 75, 50, 325, 325};
      int points2 = 5;
-     g.setColor(Color.yellow);
+     g.setColor(foregroundMountain);
      g.fillPolygon(xValues2, yValues2, points2);
+
+     //middle mountain snow
+     int xValues6[] = {265, 275, 285, 310, 233};
+     int yValues6[] = {50, 75, 50, 125, 125};
+     int points6 = 5;
+     g.setColor(Color.WHITE);
+     g.fillPolygon(xValues6, yValues6, points6);
 
      //left double tipped mountain
      int xValues[] = {65, 75, 85, 175, -50};
      int yValues[] = {50, 75, 50, 325, 325};
      int points = 5;
-     g.setColor(Color.blue);
+     g.setColor(foregroundMountain);
      g.fillPolygon(xValues, yValues, points);
+
+     //left mountain snow
+     int xValues8[] = {65, 75, 85, 110, 35};
+     int yValues8[] = {50, 75, 50, 125, 125};
+     int points8 = 5;
+     g.setColor(Color.WHITE);
+     g.fillPolygon(xValues8, yValues8, points8);
 
      //right double tipped mountain
      int xValues3[] = {445, 455, 465, 550, 350};
      int yValues3[] = {50, 75, 50, 325, 325};
      int points3 = 5;
-     g.setColor(Color.green);
+     g.setColor(foregroundMountain);
      g.fillPolygon(xValues3, yValues3, points3);
+
+     //right mountain snow
+     int xValues9[] = {445, 455, 465, 488, 419};
+     int yValues9[] = {50, 75, 50, 125, 125};
+     int points9 = 5;
+     g.setColor(Color.WHITE);
+     g.fillPolygon(xValues9, yValues9, points9);
 
      //sand blending with moutains
      //g.drawOval(-50,315,570,50);
