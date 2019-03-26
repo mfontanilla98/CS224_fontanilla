@@ -159,7 +159,6 @@ public class MotionParallax extends JFrame
 		System.out.println("Mouse Clicked");
 		//make night
 		clicks++;
-		System.out.println(clicks/2);
 		if ((clicks % 2) == 0)
 		{
 			sun = new Color (255,255,128);
