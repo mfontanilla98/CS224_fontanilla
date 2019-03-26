@@ -16,7 +16,7 @@ public class MotionParallax extends JFrame
    private final int WINDOW_WIDTH = 500;
    private final int WINDOW_HEIGHT = 500;
    Color desertSky = new Color(255,212,128);
-   Color desertDunes = new Color(128,170,255);
+   Color water = new Color(128,170,255);
    Color ground = new Color(191,128,64);
    Color sky = new Color(102,153,255);
    public MotionParallax()
@@ -44,29 +44,45 @@ public class MotionParallax extends JFrame
 
    public void paint(Graphics g)
    {
+     //background
      g.drawRect(0,0,500,500);
      g.setColor(desertSky);
      g.fillRect(0,0,500,500);
 
 
-
+     //muddy sand between water and sand
      g.drawOval(-1000,375, 2000, 400);
      g.setColor(ground);
      g.fillOval(-1000, 375, 2000, 400);
 
+     //water
      g.drawOval(-1000,400,2000,400);
-     g.setColor(desertDunes);
+     g.setColor(water);
      g.fillOval(-1000, 400, 2000, 400);
 
-     //g.drawRect(0,0,250,500);
-     //g.setColor(sky);
-     //g.fillRect(0,0,250,500);
+     //sky color
+     g.drawRect(0,0,500,200);
+     g.setColor(sky);
+     g.fillRect(0,0,500,200);
 
-     int xValues[] = {25, 145, 25, 145, 25};
-     int yValues[] = {25, 25, 145, 145, 25};
+     int xValues2[] = {265, 275, 285, 375, 150};
+     int yValues2[] = {50, 75, 50, 325, 325};
+     int points2 = 5;
+     g.setColor(Color.yellow);
+     g.fillPolygon(xValues2, yValues2, points2);
+
+     int xValues[] = {65, 75, 85, 175, -50};
+     int yValues[] = {50, 75, 50, 325, 325};
      int points = 5;
      g.setColor(Color.blue);
      g.fillPolygon(xValues, yValues, points);
+
+     int xValues3[] = {445, 455, 465, 550, 350};
+     int yValues3[] = {50, 75, 50, 325, 325};
+     int points3 = 5;
+     g.setColor(Color.green);
+     g.fillPolygon(xValues3, yValues3, points3);
+
      //getContentPane().setBackground(desertSky);
    }
 
