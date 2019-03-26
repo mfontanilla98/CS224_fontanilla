@@ -150,38 +150,39 @@ public class MotionParallax extends JFrame
    {
       public void mousePressed(MouseEvent e)
       {
-		System.out.println("Mouse pressed");
-		System.out.println("Holding...");
+		      System.out.println("Mouse pressed");
+		      System.out.println("Holding...");
       }
 
       public void mouseClicked(MouseEvent e)
       {
 		System.out.println("Mouse Clicked");
+
 		//make night
 		clicks++;
 		if ((clicks % 2) == 0)
 		{
 			sun = new Color (255,255,128);
 			sand = new Color(255,212,128);
-		    water = new Color(102,0,255);
+		  water = new Color(102,0,255);
 			ground = new Color(191,128,64);
-		    sky = new Color(102,153,255);
-		    foregroundMountain = new Color(191, 128, 64);
-		    backgroundMountain = new Color(204, 153, 102);
+		  sky = new Color(102,153,255);
+		  foregroundMountain = new Color(191, 128, 64);
+		  backgroundMountain = new Color(204, 153, 102);
 			snow = new Color(242,242,242);
 		}
 		else
 		{
 			sun = new Color(140,140,140);
 			sand = new Color(153,102,0);
-		    water = new Color(0,51,128);
+		  water = new Color(0,51,128);
 			ground = new Color(77,38,0);
-		    sky = new Color(10,0,0);
-		    foregroundMountain = new Color(102, 68, 0);
-		    backgroundMountain = new Color(128, 85, 0);
+		  sky = new Color(10,0,0);
+		  foregroundMountain = new Color(102, 68, 0);
+		  backgroundMountain = new Color(128, 85, 0);
 			snow = new Color(179,179,179);
 		}
-		repaint();		
+		repaint();
       }
 
       public void mouseReleased(MouseEvent e)
@@ -208,16 +209,16 @@ public class MotionParallax extends JFrame
    {
       public void mouseDragged(MouseEvent e)
       {
-		currentX = e.getX();
-		currentY = e.getY();
-		repaint();
+		      currentX = e.getX();
+		      currentY = e.getY();
+		      repaint();
       }
 
       public void mouseMoved(MouseEvent e)
       {
-		currentX = e.getX();
-		currentY = e.getY();
-		repaint();
+		      currentX = e.getX();
+		      currentY = e.getY();
+		      repaint();
       }
    }
 
