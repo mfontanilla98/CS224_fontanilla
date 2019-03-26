@@ -1,3 +1,9 @@
+/***************
+Homework #4
+Due Date: 3/25/19
+Names: Michael Fontanilla, Ryan Hays
+********************/
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
