@@ -24,6 +24,8 @@ public class MotionParallax extends JFrame
    private int sunDivider = 100;
    private int backMountDivider = 50;
    private int frontMountDivider = 25;
+   private int sandDivider = 12;
+   private int waterDivider = 6;
 
    public MotionParallax()
    {
@@ -51,22 +53,23 @@ public class MotionParallax extends JFrame
    public void paint(Graphics g)
    {
      //background
-     g.drawRect(0,0,500,500);
+     g.drawRect((0 + currentX/sandDivider),(0 + currentY/sandDivider),600,600);
      g.setColor(sand);
-     g.fillRect(0,0,500,500);
+     g.fillRect((0 + currentX/sandDivider),(0 + currentY/sandDivider),600,600);
 
 
      //muddy sand between water and sand
-     g.drawOval(-1000,375, 2000, 400);
+     g.drawOval((-1000 + currentX/sandDivider),(375 + currentY/sandDivider), 2000, 400);
      g.setColor(ground);
-     g.fillOval(-1000, 375, 2000, 400);
+     g.fillOval((-1000 + currentX/sandDivider), (375 + currentY/sandDivider), 2000, 400);
 
      //water
-     g.drawOval(-1000,400,2000,400);
+     g.drawOval((-1000 + currentX/waterDivider),(400 + currentY/waterDivider),2000,400);
      g.setColor(water);
-     g.fillOval(-1000, 400, 2000, 400);
+     g.fillOval((-1000 + currentX/waterDivider), (400 + currentY/waterDivider), 2000, 400);
 
      //sky color
+	 //sky does not need parallax
      g.drawRect(0,0,500,200);
      g.setColor(sky);
      g.fillRect(0,0,500,200);
@@ -126,14 +129,14 @@ public class MotionParallax extends JFrame
 
      //right mountain snow
      int xValuesRMS[] = {(445 + currentX/frontMountDivider), (455 + currentX/frontMountDivider), (465 + currentX/frontMountDivider), (488 + currentX/frontMountDivider), (419 + currentX/frontMountDivider)};
-     int yValuesRMS[] = {(50 + currentX/frontMountDivider), (75 + currentX/frontMountDivider), (50 + currentX/frontMountDivider), (125 + currentX/frontMountDivider), (125 + currentX/frontMountDivider)};
+     int yValuesRMS[] = {(50 + currentY/frontMountDivider), (75 + currentY/frontMountDivider), (50 + currentY/frontMountDivider), (125 + currentY/frontMountDivider), (125 + currentY/frontMountDivider)};
      int pointsRMS = 5;
      g.setColor(Color.WHITE);
      g.fillPolygon(xValuesRMS, yValuesRMS, pointsRMS);
 
      //sand blending with moutains
      g.setColor(sand);
-     g.fillOval(-75,315,570,50);
+     g.fillOval((-75 + currentX/sandDivider),(315 + currentY/sandDivider),570,50);
    }
 
    /**
