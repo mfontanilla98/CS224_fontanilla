@@ -5,8 +5,9 @@ import java.awt.Graphics;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
-public class MotionParallax extends JFrame
+public class MotionParallax extends JFrame implements ActionListener
 {
    private int currentX = 0; // Mouse cursor's X position
    private int currentY = 0; // Mouse cursor's Y position
@@ -23,12 +24,15 @@ public class MotionParallax extends JFrame
    Color foregroundMountain = new Color(191, 128, 64);
    Color backgroundMountain = new Color(204, 153, 102);
    Color snow = new Color(242,242,242);
+   Color cloud = new Color(204,204,204);
    private int sunDivider = 100;
    private int backMountDivider = 50;
    private int frontMountDivider = 25;
    private int sandDivider = 12;
    private int waterDivider = 6;
    private double clicks = 0;
+   private int delay = 10;
+   protected Timer timer;
 
    public MotionParallax()
    {
@@ -37,6 +41,8 @@ public class MotionParallax extends JFrame
      addMouseListener(new MyMouseListener());
      addMouseMotionListener(new MyMouseMotionListener());
 
+     timer = new Timer(delay, this);
+     timer.start();		// start the timer
      //panel = new JPanel();
      //add(panel);
    }
@@ -45,6 +51,7 @@ public class MotionParallax extends JFrame
      setTitle("Motion Parallax");
      setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
      setVisible(true);
    }
 
@@ -52,6 +59,13 @@ public class MotionParallax extends JFrame
       paint method
       @param g The applet's Graphics object.
    */
+
+   public void actionPerformed(ActionEvent e)
+   // will run when the timer fires
+   {
+	    //repaint();
+      cloud = new Color(102, 153, 255);
+   }
 
    public void paint(Graphics g)
    {
@@ -80,6 +94,9 @@ public class MotionParallax extends JFrame
      //sun
      g.setColor(sun);
      g.fillOval((125 + currentX/sunDivider),(50 + currentY/sunDivider),50,50);
+
+     g.setColor(cloud);
+     g.fillOval((375 + currentX/sunDivider), (50 + currentY/sunDivider),100,50);
 
      //right background mountain
      int xValuesRBM[] = {(345 + currentX/backMountDivider), (450 + currentX/backMountDivider), (250 + currentX/backMountDivider)};
