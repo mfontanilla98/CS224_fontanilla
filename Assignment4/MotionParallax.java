@@ -19,6 +19,7 @@ public class MotionParallax extends JFrame
    Color water = new Color(102,0,255);
    Color ground = new Color(191,128,64);
    Color sky = new Color(102,153,255);
+   Color sun = new Color(255,255,128);
    Color foregroundMountain = new Color(191, 128, 64);
    Color backgroundMountain = new Color(204, 153, 102);
    private int sunDivider = 100;
@@ -26,6 +27,7 @@ public class MotionParallax extends JFrame
    private int frontMountDivider = 25;
    private int sandDivider = 12;
    private int waterDivider = 6;
+   private double clicks = 0;
 
    public MotionParallax()
    {
@@ -75,7 +77,7 @@ public class MotionParallax extends JFrame
      g.fillRect(0,0,500,200);
 
      //sun
-     g.setColor(Color.YELLOW);
+     g.setColor(sun);
      g.fillOval((125 + currentX/sunDivider),(50 + currentY/sunDivider),50,50);
 
      //right background mountain
@@ -154,6 +156,17 @@ public class MotionParallax extends JFrame
       public void mouseClicked(MouseEvent e)
       {
 		System.out.println("Mouse Clicked");
+		//make night
+		clicks++;
+		if ((clicks/2) == 0)
+		{
+			sun = new Color (255,255,128);
+		}
+		else
+		{
+			sun = new Color(140,140,140);
+		}
+		repaint();		
       }
 
       public void mouseReleased(MouseEvent e)
