@@ -22,6 +22,8 @@ public class MotionParallax extends JFrame
    Color foregroundMountain = new Color(191, 128, 64);
    Color backgroundMountain = new Color(204, 153, 102);
    private int sunDivider = 100;
+   private int backMountDivider = 50;
+   private int frontMountDivider = 25;
 
    public MotionParallax()
    {
@@ -74,57 +76,57 @@ public class MotionParallax extends JFrame
      g.fillOval((125 + currentX/sunDivider),(50 + currentY/sunDivider),50,50);
 
      //right background mountain
-     int xValuesRBM[] = {345, 450, 250};
-     int yValuesRBM[] = {100, 325, 325};
+     int xValuesRBM[] = {(345 + currentX/backMountDivider), (450 + currentX/backMountDivider), (250 + currentX/backMountDivider)};
+     int yValuesRBM[] = {(100 + currentY/backMountDivider), (325 + currentY/backMountDivider), (325 + currentY/backMountDivider)};
      int pointsRBM = 3;
      g.setColor(backgroundMountain);
      g.fillPolygon(xValuesRBM, yValuesRBM, pointsRBM);
 
      //left background mountain
-     int xValuesLBM[] = {165, 270, 70};
-     int yValuesLBM[] = {100, 325, 325};
+     int xValuesLBM[] = {(165 + currentX/backMountDivider), (270 + currentX/backMountDivider), (70 + currentX/backMountDivider)};
+     int yValuesLBM[] = {(100 + currentY/backMountDivider), (325 + currentY/backMountDivider), (325 + currentY/backMountDivider)};
      int pointsLBM = 3;
      g.setColor(backgroundMountain);
      g.fillPolygon(xValuesLBM, yValuesLBM, pointsLBM);
 
      //middle foreground mountain
-     int xValuesMFM[] = {265, 275, 285, 375, 150};
-     int yValuesMFM[] = {50, 75, 50, 325, 325};
+     int xValuesMFM[] = {(265 + currentX/frontMountDivider), (275 + currentX/frontMountDivider), (285 + currentX/frontMountDivider), (375 + currentX/frontMountDivider), (150 + currentX/frontMountDivider)};
+     int yValuesMFM[] = {(50 + currentY/frontMountDivider), (75 + currentY/frontMountDivider), (50 + currentY/frontMountDivider), (325 + currentY/frontMountDivider), (325 + currentY/frontMountDivider)};
      int pointsMFM = 5;
      g.setColor(foregroundMountain);
      g.fillPolygon(xValuesMFM, yValuesMFM, pointsMFM);
 
      //middle mountain snow
-     int xValuesMMS[] = {265, 275, 285, 310, 233};
-     int yValuesMMS[] = {50, 75, 50, 125, 125};
+     int xValuesMMS[] = {(265 + currentX/frontMountDivider), (275 + currentX/frontMountDivider), (285 + currentX/frontMountDivider), (310 + currentX/frontMountDivider), (233 + currentX/frontMountDivider)};
+     int yValuesMMS[] = {(50 + currentY/frontMountDivider), (75 + currentY/frontMountDivider), (50 + currentY/frontMountDivider), (125 + currentY/frontMountDivider), (125 + currentY/frontMountDivider)};
      int pointsMMS = 5;
      g.setColor(Color.WHITE);
      g.fillPolygon(xValuesMMS, yValuesMMS, pointsMMS);
 
      //left foreground mountain
-     int xValuesLFM[] = {65, 75, 85, 175, -50};
-     int yValuesLFM[] = {50, 75, 50, 325, 325};
+     int xValuesLFM[] = {(65 + currentX/frontMountDivider), (75 + currentX/frontMountDivider), (85 + currentX/frontMountDivider), (175 + currentX/frontMountDivider), (-50 + currentX/frontMountDivider)};
+     int yValuesLFM[] = {(50 + currentY/frontMountDivider), (75 + currentY/frontMountDivider), (50 + currentY/frontMountDivider), (325 + currentY/frontMountDivider), (325 + currentY/frontMountDivider)};
      int pointsLFM = 5;
      g.setColor(foregroundMountain);
      g.fillPolygon(xValuesLFM, yValuesLFM, pointsLFM);
 
      //left mountain snow
-     int xValuesLMS[] = {65, 75, 85, 110, 35};
-     int yValuesLMS[] = {50, 75, 50, 125, 125};
+     int xValuesLMS[] = {(65 + currentX/frontMountDivider), (75 + currentX/frontMountDivider), (85 + currentX/frontMountDivider), (110 + currentX/frontMountDivider), (35 + currentX/frontMountDivider)};
+     int yValuesLMS[] = {(50 + currentY/frontMountDivider), (75 + currentY/frontMountDivider), (50 + currentY/frontMountDivider), (125 + currentY/frontMountDivider), (125 + currentY/frontMountDivider)};
      int pointsLMS = 5;
      g.setColor(Color.WHITE);
      g.fillPolygon(xValuesLMS, yValuesLMS, pointsLMS);
 
      //right foreground mountain
-     int xValuesRFM[] = {445, 455, 465, 550, 350};
-     int yValuesRFM[] = {50, 75, 50, 325, 325};
+     int xValuesRFM[] = {(445 + currentX/frontMountDivider), (455 + currentX/frontMountDivider), (465 + currentX/frontMountDivider), (550 + currentX/frontMountDivider), (350 + currentX/frontMountDivider)};
+     int yValuesRFM[] = {(50 + currentY/frontMountDivider), (75 + currentY/frontMountDivider), (50 + currentY/frontMountDivider), (325 + currentY/frontMountDivider), (325 + currentY/frontMountDivider)};
      int pointsRFM = 5;
      g.setColor(foregroundMountain);
      g.fillPolygon(xValuesRFM, yValuesRFM, pointsRFM);
 
      //right mountain snow
-     int xValuesRMS[] = {445, 455, 465, 488, 419};
-     int yValuesRMS[] = {50, 75, 50, 125, 125};
+     int xValuesRMS[] = {(445 + currentX/frontMountDivider), (455 + currentX/frontMountDivider), (465 + currentX/frontMountDivider), (488 + currentX/frontMountDivider), (419 + currentX/frontMountDivider)};
+     int yValuesRMS[] = {(50 + currentX/frontMountDivider), (75 + currentX/frontMountDivider), (50 + currentX/frontMountDivider), (125 + currentX/frontMountDivider), (125 + currentX/frontMountDivider)};
      int pointsRMS = 5;
      g.setColor(Color.WHITE);
      g.fillPolygon(xValuesRMS, yValuesRMS, pointsRMS);
@@ -184,7 +186,6 @@ public class MotionParallax extends JFrame
       {
 		currentX = e.getX();
 		currentY = e.getY();
-		System.out.println(currentX);
 		repaint();
       }
    }
