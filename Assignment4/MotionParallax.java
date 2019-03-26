@@ -22,6 +22,7 @@ public class MotionParallax extends JFrame
    Color sun = new Color(255,255,128);
    Color foregroundMountain = new Color(191, 128, 64);
    Color backgroundMountain = new Color(204, 153, 102);
+   Color snow = new Color(242,242,242);
    private int sunDivider = 100;
    private int backMountDivider = 50;
    private int frontMountDivider = 25;
@@ -105,7 +106,7 @@ public class MotionParallax extends JFrame
      int xValuesMMS[] = {(265 + currentX/frontMountDivider), (275 + currentX/frontMountDivider), (285 + currentX/frontMountDivider), (310 + currentX/frontMountDivider), (233 + currentX/frontMountDivider)};
      int yValuesMMS[] = {(50 + currentY/frontMountDivider), (75 + currentY/frontMountDivider), (50 + currentY/frontMountDivider), (125 + currentY/frontMountDivider), (125 + currentY/frontMountDivider)};
      int pointsMMS = 5;
-     g.setColor(Color.WHITE);
+     g.setColor(snow);
      g.fillPolygon(xValuesMMS, yValuesMMS, pointsMMS);
 
      //left foreground mountain
@@ -119,7 +120,7 @@ public class MotionParallax extends JFrame
      int xValuesLMS[] = {(65 + currentX/frontMountDivider), (75 + currentX/frontMountDivider), (85 + currentX/frontMountDivider), (110 + currentX/frontMountDivider), (35 + currentX/frontMountDivider)};
      int yValuesLMS[] = {(50 + currentY/frontMountDivider), (75 + currentY/frontMountDivider), (50 + currentY/frontMountDivider), (125 + currentY/frontMountDivider), (125 + currentY/frontMountDivider)};
      int pointsLMS = 5;
-     g.setColor(Color.WHITE);
+     g.setColor(snow);
      g.fillPolygon(xValuesLMS, yValuesLMS, pointsLMS);
 
      //right foreground mountain
@@ -133,7 +134,7 @@ public class MotionParallax extends JFrame
      int xValuesRMS[] = {(445 + currentX/frontMountDivider), (455 + currentX/frontMountDivider), (465 + currentX/frontMountDivider), (488 + currentX/frontMountDivider), (419 + currentX/frontMountDivider)};
      int yValuesRMS[] = {(50 + currentY/frontMountDivider), (75 + currentY/frontMountDivider), (50 + currentY/frontMountDivider), (125 + currentY/frontMountDivider), (125 + currentY/frontMountDivider)};
      int pointsRMS = 5;
-     g.setColor(Color.WHITE);
+     g.setColor(snow);
      g.fillPolygon(xValuesRMS, yValuesRMS, pointsRMS);
 
      //sand blending with moutains
@@ -158,13 +159,28 @@ public class MotionParallax extends JFrame
 		System.out.println("Mouse Clicked");
 		//make night
 		clicks++;
-		if ((clicks/2) == 0)
+		System.out.println(clicks/2);
+		if ((clicks % 2) == 0)
 		{
 			sun = new Color (255,255,128);
+			sand = new Color(255,212,128);
+		    water = new Color(102,0,255);
+			ground = new Color(191,128,64);
+		    sky = new Color(102,153,255);
+		    foregroundMountain = new Color(191, 128, 64);
+		    backgroundMountain = new Color(204, 153, 102);
+			snow = new Color(242,242,242);
 		}
 		else
 		{
 			sun = new Color(140,140,140);
+			sand = new Color(153,102,0);
+		    water = new Color(0,51,128);
+			ground = new Color(77,38,0);
+		    sky = new Color(10,0,0);
+		    foregroundMountain = new Color(102, 68, 0);
+		    backgroundMountain = new Color(128, 85, 0);
+			snow = new Color(179,179,179);
 		}
 		repaint();		
       }
