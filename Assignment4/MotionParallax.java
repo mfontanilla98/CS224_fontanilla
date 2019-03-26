@@ -68,89 +68,80 @@ public class MotionParallax extends JFrame
      g.setColor(sky);
      g.fillRect(0,0,500,200);
 
-     g.drawOval(125,50,50,50);
+     //sun
      g.setColor(Color.YELLOW);
      g.fillOval(125,50,50,50);
 
-     //right single tipped mountain
-     int xValues4[] = {345, 450, 250};
-     int yValues4[] = {100, 325, 325};
-     int points4 = 3;
+     //right background mountain
+     int xValuesRBM[] = {345, 450, 250};
+     int yValuesRBM[] = {100, 325, 325};
+     int pointsRBM = 3;
      g.setColor(backgroundMountain);
-     g.fillPolygon(xValues4, yValues4, points4);
+     g.fillPolygon(xValuesRBM, yValuesRBM, pointsRBM);
 
-     //left single tipped mountain
-     int xValues5[] = {165, 270, 70};
-     int yValues5[] = {100, 325, 325};
-     int points5 = 3;
+     //left background mountain
+     int xValuesLBM[] = {165, 270, 70};
+     int yValuesLBM[] = {100, 325, 325};
+     int pointsLBM = 3;
      g.setColor(backgroundMountain);
-     g.fillPolygon(xValues5, yValues5, points5);
+     g.fillPolygon(xValuesLBM, yValuesLBM, pointsLBM);
 
-     //middle double tipped mountain
-     int xValues2[] = {265, 275, 285, 375, 150};
-     int yValues2[] = {50, 75, 50, 325, 325};
-     int points2 = 5;
+     //middle foreground mountain
+     int xValuesMFM[] = {265, 275, 285, 375, 150};
+     int yValuesMFM[] = {50, 75, 50, 325, 325};
+     int pointsMFM = 5;
      g.setColor(foregroundMountain);
-     g.fillPolygon(xValues2, yValues2, points2);
+     g.fillPolygon(xValuesMFM, yValuesMFM, pointsMFM);
 
      //middle mountain snow
-     int xValues6[] = {265, 275, 285, 310, 233};
-     int yValues6[] = {50, 75, 50, 125, 125};
-     int points6 = 5;
+     int xValuesMMS[] = {265, 275, 285, 310, 233};
+     int yValuesMMS[] = {50, 75, 50, 125, 125};
+     int pointsMMS = 5;
      g.setColor(Color.WHITE);
-     g.fillPolygon(xValues6, yValues6, points6);
+     g.fillPolygon(xValuesMMS, yValuesMMS, pointsMMS);
 
-     //left double tipped mountain
-     int xValues[] = {65, 75, 85, 175, -50};
-     int yValues[] = {50, 75, 50, 325, 325};
-     int points = 5;
+     //left foreground mountain
+     int xValuesLFM[] = {65, 75, 85, 175, -50};
+     int yValuesLFM[] = {50, 75, 50, 325, 325};
+     int pointsLFM = 5;
      g.setColor(foregroundMountain);
-     g.fillPolygon(xValues, yValues, points);
+     g.fillPolygon(xValuesLFM, yValuesLFM, pointsLFM);
 
      //left mountain snow
-     int xValues8[] = {65, 75, 85, 110, 35};
-     int yValues8[] = {50, 75, 50, 125, 125};
-     int points8 = 5;
+     int xValuesLMS[] = {65, 75, 85, 110, 35};
+     int yValuesLMS[] = {50, 75, 50, 125, 125};
+     int pointsLMS = 5;
      g.setColor(Color.WHITE);
-     g.fillPolygon(xValues8, yValues8, points8);
+     g.fillPolygon(xValuesLMS, yValuesLMS, pointsLMS);
 
-     //right double tipped mountain
-     int xValues3[] = {445, 455, 465, 550, 350};
-     int yValues3[] = {50, 75, 50, 325, 325};
-     int points3 = 5;
+     //right foreground mountain
+     int xValuesRFM[] = {445, 455, 465, 550, 350};
+     int yValuesRFM[] = {50, 75, 50, 325, 325};
+     int pointsRFM = 5;
      g.setColor(foregroundMountain);
-     g.fillPolygon(xValues3, yValues3, points3);
+     g.fillPolygon(xValuesRFM, yValuesRFM, pointsRFM);
 
      //right mountain snow
-     int xValues9[] = {445, 455, 465, 488, 419};
-     int yValues9[] = {50, 75, 50, 125, 125};
-     int points9 = 5;
+     int xValuesRMS[] = {445, 455, 465, 488, 419};
+     int yValuesRMS[] = {50, 75, 50, 125, 125};
+     int pointsRMS = 5;
      g.setColor(Color.WHITE);
-     g.fillPolygon(xValues9, yValues9, points9);
+     g.fillPolygon(xValuesRMS, yValuesRMS, pointsRMS);
 
      //sand blending with moutains
-     //g.drawOval(-50,315,570,50);
      g.setColor(sand);
      g.fillOval(-75,315,570,50);
-
-     //getContentPane().setBackground(desertSky);
    }
 
    /**
       Mouse listener class
    */
 
-   private class MyMouseListener
-                       implements MouseListener
+   private class MyMouseListener implements MouseListener
    {
       public void mousePressed(MouseEvent e)
       {
       }
-
-      //
-      // The following methods are unused, but still
-      // required by the MouseListener interface.
-      //
 
       public void mouseClicked(MouseEvent e)
       {
@@ -173,17 +164,11 @@ public class MotionParallax extends JFrame
       Mouse Motion listener class
    */
 
-   private class MyMouseMotionListener
-                   implements MouseMotionListener
+   private class MyMouseMotionListener implements MouseMotionListener
    {
       public void mouseDragged(MouseEvent e)
       {
       }
-
-      /**
-         The mouseMoved method is unused, but still
-         required by the MouseMotionListener interface.
-      */
 
       public void mouseMoved(MouseEvent e)
       {
