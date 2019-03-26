@@ -15,7 +15,7 @@ public class MotionParallax extends JFrame
    private JPanel panel;
    private final int WINDOW_WIDTH = 500;
    private final int WINDOW_HEIGHT = 500;
-   Color desertSky = new Color(255,212,128);
+   Color sand = new Color(255,212,128);
    Color water = new Color(128,170,255);
    Color ground = new Color(191,128,64);
    Color sky = new Color(102,153,255);
@@ -46,7 +46,7 @@ public class MotionParallax extends JFrame
    {
      //background
      g.drawRect(0,0,500,500);
-     g.setColor(desertSky);
+     g.setColor(sand);
      g.fillRect(0,0,500,500);
 
 
@@ -65,23 +65,45 @@ public class MotionParallax extends JFrame
      g.setColor(sky);
      g.fillRect(0,0,500,200);
 
+     //right single tipped mountain
+     int xValues4[] = {345, 450, 250};
+     int yValues4[] = {100, 325, 325};
+     int points4 = 3;
+     g.setColor(Color.blue);
+     g.fillPolygon(xValues4, yValues4, points4);
+
+     //left single tipped mountain
+     int xValues5[] = {165, 270, 70};
+     int yValues5[] = {100, 325, 325};
+     int points5 = 3;
+     g.setColor(Color.green);
+     g.fillPolygon(xValues5, yValues5, points5);
+
+     //middle double tipped mountain
      int xValues2[] = {265, 275, 285, 375, 150};
      int yValues2[] = {50, 75, 50, 325, 325};
      int points2 = 5;
      g.setColor(Color.yellow);
      g.fillPolygon(xValues2, yValues2, points2);
 
+     //left double tipped mountain
      int xValues[] = {65, 75, 85, 175, -50};
      int yValues[] = {50, 75, 50, 325, 325};
      int points = 5;
      g.setColor(Color.blue);
      g.fillPolygon(xValues, yValues, points);
 
+     //right double tipped mountain
      int xValues3[] = {445, 455, 465, 550, 350};
      int yValues3[] = {50, 75, 50, 325, 325};
      int points3 = 5;
      g.setColor(Color.green);
      g.fillPolygon(xValues3, yValues3, points3);
+
+     //sand blending with moutains
+     //g.drawOval(-50,315,570,50);
+     g.setColor(sand);
+     g.fillOval(-75,315,570,50);
 
      //getContentPane().setBackground(desertSky);
    }
