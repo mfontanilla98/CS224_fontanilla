@@ -1,6 +1,6 @@
-//ICA1 - Functions
+//ICA2 - Functions
 //Michael Fontanilla
-//January 25/2019
+//January 25,2019
 
 import java.util.Scanner;
 
@@ -12,7 +12,7 @@ public class Pet
 
 	public void setAnimal(String pet_species)
 	{
-	animal = pet_species;
+		animal = pet_species;
 	}
 
 	public void setName(String pet_name)
