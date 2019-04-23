@@ -71,6 +71,7 @@ public class LatinTranslator extends JFrame
 
 	   	   if(e.getSource() == sinisterButton)
 		   {
+
 				JOptionPane.showMessageDialog(null, "Left");
 		   }
 		   else if(e.getSource() == dexterButton)
