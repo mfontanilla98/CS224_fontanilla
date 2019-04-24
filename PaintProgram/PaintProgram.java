@@ -14,16 +14,15 @@ public class PaintProgram extends JFrame
 {
 	private JFrame paintFrame;
 	private JPanel buttonPanel;
+	private JPanel drawPanel;
 	private JButton squareButton;
 	private JButton paintButton;
-	private JButton red;
-	private JButton blue;
-	private JButton yellow;
-	private Container setPad;
-	final PadDraw sketchPad = new PadDraw();
+	private JButton redButton;
+	private JButton blueButton;
+	private JButton yellowButton;
 	private final int WINDOW_WIDTH = 500;
 	private final int WINDOW_HEIGHT = 500;
-
+	private boolean boxButtonEnabled = false;
 	private int currentX = 0;
 	private int currentY = 0;
 	private int width = 0;
@@ -37,21 +36,25 @@ public class PaintProgram extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		
+		
 		//Builds panel with icons for paint actions
 		buildButtonPanel();
-
+		drawPanel = new JPanel();
 		
 		//Add Panel
 		add(buttonPanel, BorderLayout.WEST);
+		add(drawPanel, BorderLayout.CENTER);
 
 		//Add Container with sketchPad
-		setPad = paintFrame.getContentPane();
-		setPad.add(sketchPad, BorderLayout.CENTER);
+		//setPad = paintFrame.getContentPane();
+		//setPad.add(sketchPad, BorderLayout.CENTER);
 
 
 		setVisible(true);
 
-	
+		// Add a mouse listener and a mouse motion listener.
+        addMouseListener(new MyMouseListener());
+		addMouseMotionListener(new MyMouseMotionListener());
 	}
 
 	
@@ -64,9 +67,9 @@ public class PaintProgram extends JFrame
 		buttonPanel.setLayout(new GridLayout(5, 1));
 		buttonPanel.add(squareButton);
 		buttonPanel.add(paintButton);
-		buttonPanel.add(red);
-		buttonPanel.add(blue);
-		buttonPanel.add(yellow);
+		buttonPanel.add(redButton);
+		buttonPanel.add(blueButton);
+		buttonPanel.add(yellowButton);
 	}
 
 	private void buildButtons()
@@ -79,6 +82,12 @@ public class PaintProgram extends JFrame
 		squareButton = new JButton();
 		squareButton.setPreferredSize(new Dimension (10, 10));
 		squareButton.setIcon(squareTool);
+
+		squareButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				boxButtonEnabled = true;
+			}
+		});
 
 
 		//Paint Brush Button
@@ -95,52 +104,52 @@ public class PaintProgram extends JFrame
 		Image redImg = redIcon.getImage();
 		Image newRedImg = redImg.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
 		redIcon = new ImageIcon(newRedImg);
-		red = new JButton();
-		red.setPreferredSize(new Dimension (20, 20));
-		red.setIcon(redIcon);
+		redButton = new JButton();
+		redButton.setPreferredSize(new Dimension (20, 20));
+		redButton.setIcon(redIcon);
 
 		//Blue Color Button
 		ImageIcon blueIcon = new ImageIcon("blue.png");
 		Image blueImg = blueIcon.getImage();
 		Image newBlueImg = blueImg.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
 		blueIcon = new ImageIcon(newBlueImg);
-		blue = new JButton();
-		blue.setPreferredSize(new Dimension (20, 20));
-		blue.setIcon(blueIcon);
+		blueButton = new JButton();
+		blueButton.setPreferredSize(new Dimension (20, 20));
+		blueButton.setIcon(blueIcon);
 
 		//Yellow Color Button
 		ImageIcon yellowIcon = new ImageIcon("yellow.png");
 		Image yellowImg = yellowIcon.getImage();
 		Image newYellowImg = yellowImg.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
 		yellowIcon = new ImageIcon(newYellowImg);
-		yellow = new JButton();
-		yellow.setPreferredSize(new Dimension (20, 20));
-		yellow.setIcon(yellowIcon);
+		yellowButton = new JButton();
+		yellowButton.setPreferredSize(new Dimension (20, 20));
+		yellowButton.setIcon(yellowIcon);
 
-		//ActionListeners
-		red.addActionListener(new ActionListener(){
+		/*ActionListeners
+		redButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				sketchPad.redPaint();
 			}
 		});
 
-		blue.addActionListener(new ActionListener(){
+		blueButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				sketchPad.bluePaint();
 			}
 		});
 
-		yellow.addActionListener(new ActionListener(){
+		yellowButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				sketchPad.yellowPaint();
 			}
-		});
+		});*/
 
 	}
 
 	
 
-class PadDraw extends JComponent{
+/*class PadDraw extends JComponent{
 	Image pad;
 	Graphics2D graphicsPad; //Make up the white sketchpad
 	
@@ -175,7 +184,8 @@ class PadDraw extends JComponent{
 		//it repaints it and sets oldX and oldY as currentX and currentY
 	}
 
-	public void paintComponent(Graphics g){
+	public void paintComponent(Graphics g)
+	{
 		if(pad == null){
 			pad = createImage(getSize().width, getSize().height);
 			graphicsPad = (Graphics2D)pad.getGraphics();
@@ -207,13 +217,79 @@ class PadDraw extends JComponent{
 	public void yellowPaint(){
 		graphicsPad.setPaint(Color.yellow);
 		repaint();
-	}
+	}*/
+
+
+	/**
+      Mouse listener class
+   */
+
+   private class MyMouseListener implements MouseListener
+   {
+      public void mousePressed(MouseEvent e)
+      {
+         // Get the mouse cursor coordinates.
+         currentX = e.getX();
+         currentY = e.getY();
+      }
+
+      //
+      // The following methods are unused, but still
+      // required by the MouseListener interface.
+      //
+
+      public void mouseClicked(MouseEvent e)
+      {
+		repaint();
+      }
+
+      public void mouseReleased(MouseEvent e)
+      {
+      }
+
+      public void mouseEntered(MouseEvent e)
+      {
+      }
+
+      public void mouseExited(MouseEvent e)
+      {
+      }
+   }
 	
 
-}
+	public void paint(Graphics g)
+   {
+      // Call the superclass's paint method.
+      super.paint(g);
+      
+      // Draw a rectangle.
+      g.drawRect(currentX, currentY, width, height);
+   }
 
-	 
-	
+	private class MyMouseMotionListener implements MouseMotionListener
+   {
+      public void mouseDragged(MouseEvent e)
+      {
+		 if (boxButtonEnabled){
+         // Calculate the size of the rectangle.
+         width = e.getX() - currentX;
+         height = e.getY() - currentY;
+         
+         // Repaint the window.
+         repaint();
+		 }
+      }
+      
+      /**
+         The mouseMoved method is unused, but still
+         required by the MouseMotionListener interface.
+      */
+      
+      public void mouseMoved(MouseEvent e)
+      {
+      }
+   }
+
 	public static void main(String[] args)
 	{
         new PaintProgram();
