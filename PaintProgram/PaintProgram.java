@@ -13,16 +13,18 @@ import javax.imageio.*;
 public class PaintProgram extends JFrame
 {
 	private JFrame paintFrame;
-	private JPanel buttonPanel;
+	private JPanel toolPanel;
 	private JPanel drawPanel;
 	private JButton squareButton;
 	private JButton paintButton;
 	private JButton redButton;
 	private JButton blueButton;
 	private JButton yellowButton;
+	private JComboBox lineTool;
 	private final int WINDOW_WIDTH = 500;
 	private final int WINDOW_HEIGHT = 500;
 	private boolean boxButtonEnabled = false;
+	private boolean paintButtonEnabled = false;
 	private int currentX = 0;
 	private int currentY = 0;
 	private int width = 0;
@@ -38,16 +40,12 @@ public class PaintProgram extends JFrame
 		
 		
 		//Builds panel with icons for paint actions
-		buildButtonPanel();
+		buildtoolPanel();
 		drawPanel = new JPanel();
 		
 		//Add Panel
-		add(buttonPanel, BorderLayout.WEST);
+		add(toolPanel, BorderLayout.NORTH);
 		add(drawPanel, BorderLayout.CENTER);
-
-		//Add Container with sketchPad
-		//setPad = paintFrame.getContentPane();
-		//setPad.add(sketchPad, BorderLayout.CENTER);
 
 
 		setVisible(true);
@@ -59,20 +57,22 @@ public class PaintProgram extends JFrame
 
 	
 
-	private void buildButtonPanel()
+	private void buildtoolPanel()
 	{
-		buildButtons();
+		buildTools();
 		
-		buttonPanel = new JPanel();
-		buttonPanel.setLayout(new GridLayout(5, 1));
-		buttonPanel.add(squareButton);
-		buttonPanel.add(paintButton);
-		buttonPanel.add(redButton);
-		buttonPanel.add(blueButton);
-		buttonPanel.add(yellowButton);
+		toolPanel = new JPanel();
+		toolPanel.setLayout(new GridLayout(1, 6));
+		toolPanel.add(squareButton);
+		toolPanel.add(paintButton);
+		toolPanel.add(lineTool);
+		toolPanel.add(redButton);
+		toolPanel.add(blueButton);
+		toolPanel.add(yellowButton);
+		toolPanel.add(lineTool);
 	}
 
-	private void buildButtons()
+	private void buildTools()
 	{
 		//Actions for Square Drawing
 		ImageIcon squareTool = new ImageIcon("square.png");
@@ -98,6 +98,12 @@ public class PaintProgram extends JFrame
 		paintButton = new JButton();
 		paintButton.setPreferredSize(new Dimension(10, 10)); //Resize JButton
 		paintButton.setIcon(paintIcon); //Set the Icon 
+
+		paintButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				paintButtonEnabled = true;
+			}
+		});
 
 		//Red Button
 		ImageIcon redIcon = new ImageIcon("red.png");
@@ -126,98 +132,33 @@ public class PaintProgram extends JFrame
 		yellowButton.setPreferredSize(new Dimension (20, 20));
 		yellowButton.setIcon(yellowIcon);
 
-		/*ActionListeners
-		redButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				sketchPad.redPaint();
-			}
-		});
+		//Line Thickness
 
-		blueButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				sketchPad.bluePaint();
-			}
-		});
+		//ThinLine
+		ImageIcon thinIcon = new ImageIcon("thinline.png");
+		Image thinImg = thinIcon.getImage();
+		Image newthinImg = thinImg.getScaledInstance(50, 20, java.awt.Image.SCALE_SMOOTH);
+		thinIcon = new ImageIcon(newthinImg);
 
-		yellowButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				sketchPad.yellowPaint();
-			}
-		});*/
+		//Mid thickness
+		ImageIcon midIcon = new ImageIcon("midline.png");
+		Image midImg = midIcon.getImage();
+		Image newmidImg = midImg.getScaledInstance(50, 20, java.awt.Image.SCALE_SMOOTH);
+		midIcon = new ImageIcon(newmidImg);
 
+		//Thickest Line
+		ImageIcon thiccIcon = new ImageIcon("thiccline.png");
+		Image thiccImg = thiccIcon.getImage();
+		Image newthiccImg = thiccImg.getScaledInstance(50, 20, java.awt.Image.SCALE_SMOOTH);
+		thiccIcon = new ImageIcon(newthiccImg);
+		
+
+		Object[] lineThiccness ={thinIcon, midIcon, thiccIcon};
+		lineTool = new JComboBox(lineThiccness);
 	}
 
-	
 
-/*class PadDraw extends JComponent{
-	Image pad;
-	Graphics2D graphicsPad; //Make up the white sketchpad
-	
-	int currentX, currentY, startX, startY;
-	//these are gonna hold our mouse coordinates
-
-	//Now for the constructors
-	public PadDraw(){
-		setDoubleBuffered(false);
-		addMouseListener(new MouseAdapter(){
-			public void mousePressed(MouseEvent e){
-				startX = e.getX();
-				startY = e.getY();
-			}
-		});
-		//if the mouse is pressed it sets the oldX & oldY
-		//coordinates as the mouses x & y coordinates
-		addMouseMotionListener(new MouseMotionAdapter(){
-			public void mouseDragged(MouseEvent e){
-				currentX = e.getX();
-				currentY = e.getY();
-				if(graphicsPad != null)
-				graphicsPad.drawLine(startX, startY, currentX, currentY);
-				repaint();
-				startX = currentX;
-				startY = currentY;
-			}
-
-		});
-		//while the mouse is dragged it sets currentX & currentY as the mouses x and y
-		//then it draws a line at the coordinates
-		//it repaints it and sets oldX and oldY as currentX and currentY
-	}
-
-	public void paintComponent(Graphics g)
-	{
-		if(pad == null){
-			pad = createImage(getSize().width, getSize().height);
-			graphicsPad = (Graphics2D)pad.getGraphics();
-			graphicsPad.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-		}
-		g.drawImage(pad, 0, 0, null);
-	}
-	//this is the painting bit
-	//if it has nothing on it then
-	//it creates an image the size of the window
-	//sets the value of Graphics as the image
-	//sets the rendering
-	//runs the clear() method
-	//then it draws the image
-
-
-
-	public void redPaint(){
-		graphicsPad.setPaint(Color.red);
-		repaint();
-	}
-	
-	public void bluePaint(){
-		graphicsPad.setPaint(Color.blue);
-		repaint();
-	}
-	
-	public void yellowPaint(){
-		graphicsPad.setPaint(Color.yellow);
-		repaint();
-	}*/
+		
 
 
 	/**
@@ -228,15 +169,10 @@ public class PaintProgram extends JFrame
    {
       public void mousePressed(MouseEvent e)
       {
-         // Get the mouse cursor coordinates.
+
          currentX = e.getX();
          currentY = e.getY();
       }
-
-      //
-      // The following methods are unused, but still
-      // required by the MouseListener interface.
-      //
 
       public void mouseClicked(MouseEvent e)
       {
@@ -259,7 +195,7 @@ public class PaintProgram extends JFrame
 
 	public void paint(Graphics g)
    {
-      // Call the superclass's paint method.
+
       super.paint(g);
       
       // Draw a rectangle.
@@ -279,11 +215,7 @@ public class PaintProgram extends JFrame
          repaint();
 		 }
       }
-      
-      /**
-         The mouseMoved method is unused, but still
-         required by the MouseMotionListener interface.
-      */
+     
       
       public void mouseMoved(MouseEvent e)
       {
